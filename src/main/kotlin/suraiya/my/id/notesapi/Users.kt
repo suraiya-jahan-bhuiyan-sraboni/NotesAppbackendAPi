@@ -9,15 +9,15 @@ import lombok.Setter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table( name = "users")
+@Table(name = "users")
 class Users(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Int,
+        var id : Int,
         @Column(name = "name")
-         var name: String,
+        var name : String,
         @Column(name = "username")
-         var username: String,
+        var username : String,
         @Column(name = "password")
-         var password: String
-        )
+        var password : String
+           )

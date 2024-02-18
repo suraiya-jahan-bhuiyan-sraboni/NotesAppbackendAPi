@@ -8,13 +8,13 @@ data class Notes(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")  // Primary key for Notes
-        val id: Int,
+        val id : Int,
 
         @Column(name = "title")
-        var title: String,
+        var title : String,
 
         @Column(name = "description")
-        val description: String,
+        val description : String,
         @Column(name = "userID")
-        val userId:Int
+        val userId : Int
                 )

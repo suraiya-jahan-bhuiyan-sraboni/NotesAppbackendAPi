@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface NotesRepository : JpaRepository<Notes, Int> {
-    fun findByUserId(userId: Int): List<Notes>
-    fun findNotesByUserId(userId : Int):List<Notes>
+    fun findByUserId(userId : Int) : List<Notes>
+    fun findNotesByUserId(userId : Int) : List<Notes>
     fun deleteNotesByUserId(userId : Int)
-    fun deleteByIdAndUserId(id : Int,userId : Int)
+    fun deleteByIdAndUserId(id : Int, userId : Int)
 }
