@@ -1,5 +1,6 @@
 package suraiya.my.id.notesapi
 
+import jakarta.transaction.Transactional
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -11,7 +12,7 @@ class UserService(@Autowired val repository : UserRepository,@Autowired val note
         if(repository.findByUsername(user.username)?.username!=null){
             return "User Exists"
         }else{
-        if((!user.name.isEmpty()) && (!user.password.isEmpty()) && (!user.username.isEmpty())) {
+        if((user.name.isNotEmpty()) && (user.password.isNotEmpty()) && (user.username.isNotEmpty())) {
             repository.save(user)
             return "Registration Successful"
         }
@@ -20,6 +21,15 @@ class UserService(@Autowired val repository : UserRepository,@Autowired val note
     }
     fun loginUser(username:String, password:String):Users{
         return repository.findByUsernameAndPassword(username,password)
+    }
+    fun resetPassword(username : String,password : Password):String{
+       val user= repository.findByUsername(username)
+        if (user!=null){
+            repository.save(Users(user.id,user.name,user.username,password.password))
+            return "password reset successful! New password is : ${password.password} ! Save it on secure place!"
+        }else{
+            return "Invalid Request"
+        }
     }
     fun deleteUser(id:Int):String{
         repository.deleteById(id)
@@ -32,8 +42,34 @@ class UserService(@Autowired val repository : UserRepository,@Autowired val note
         }
         return null
     }
-
     fun getUserNotes(userId: Int): List<Notes> {
         return notesRepository.findByUserId(userId)
+    }
+    @Transactional
+    fun deleteAllNotes(userId : Int):String{
+        if (notesRepository.findNotesByUserId(userId).isNotEmpty()){
+         notesRepository.deleteNotesByUserId(userId)
+        return "All notes deleted successfully"
+        }else{
+            return "Empty Notes List!"
+        }
+    }
+   @Transactional
+    fun deleteSingleNotes(id : Int,userId : Int):String{
+        if(notesRepository.findById(id).isPresent){
+            notesRepository.deleteByIdAndUserId(id, userId)
+            return "Deleted!"
+        }else{
+            return "Invalid Try!"
+        }
+    }
+    fun updateSingleNote(noteRequest : Notes):Notes?{
+        val note=notesRepository.findById(noteRequest.id).get()
+        if (noteRequest.title.isNotEmpty() && noteRequest.description.isNotEmpty()){
+            val update=Notes(note.id,noteRequest.title,noteRequest.description,note.userId)
+            return notesRepository.save(update)
+        }else{
+            return null
+        }
     }
 }

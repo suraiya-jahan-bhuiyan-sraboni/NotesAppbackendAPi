@@ -11,7 +11,7 @@ data class Notes(
         val id: Int,
 
         @Column(name = "title")
-        val title: String,
+        var title: String,
 
         @Column(name = "description")
         val description: String,
