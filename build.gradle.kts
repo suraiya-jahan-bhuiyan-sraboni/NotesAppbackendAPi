@@ -26,6 +26,9 @@ repositories {
 }
 
 dependencies {
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("org.springframework.boot:spring-boot-gradle-plugin:3.2.2")
+    implementation("se.transmode.gradle:gradle-docker:1.2")
     implementation("com.microsoft.sqlserver:mssql-jdbc_auth:12.6.0.x86")
     implementation("com.microsoft.azure:spring-cloud-azure-dependencies:2.4.0")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
