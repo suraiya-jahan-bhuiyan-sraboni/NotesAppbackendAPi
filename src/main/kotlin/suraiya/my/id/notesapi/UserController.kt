@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("api/users/")
 class UserController(@Autowired val service : UserService) {
-    @GetMapping("getAll")
+/*     @GetMapping("getAll")
     fun getAllUser() : ArrayList<UserResponse> {
         val userList : List<Users> = service.getAllUser()
         val responseList : ArrayList<UserResponse> = arrayListOf()
@@ -15,7 +15,7 @@ class UserController(@Autowired val service : UserService) {
             responseList.add(UserResponse(users))
         }
         return responseList
-    }
+    } */
 
     @PostMapping("RegisterUser")
     fun registerUser(@RequestBody users : Users) : String {
@@ -62,5 +62,4 @@ class UserController(@Autowired val service : UserService) {
     fun updateNotes(@RequestBody noteRequest : Notes) : Notes? {
         return service.updateSingleNote(noteRequest)
     }
-
 }
