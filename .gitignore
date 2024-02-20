@@ -38,4 +38,5 @@ out/
 ### Kotlin ###
 .kotlin
 *.properties
-Azure/
+.Azure/
+.azure
