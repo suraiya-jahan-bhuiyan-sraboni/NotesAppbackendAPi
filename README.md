@@ -41,13 +41,13 @@ This project is a Kotlin-based RESTful API that provides endpoints for managing 
 - **Response:** JSON array of notes associated with the user
 - **Description:** Retrieves all notes associated with a user.
 
-### 7. Delete All User's Notes
+### 7. Delete User's All  Notes
 - **URL:** `/api/users/DeleteAllNotes`
 - **Method:** `POST`
 - **Request Parameters:** `userId` (Int)
 - **Description:** Deletes all notes associated with a user.
 
-### 8. Delete Single User's Note
+### 8. Delete User's Single Note
 - **URL:** `/api/users/DeleteSingleNotes`
 - **Method:** `POST`
 - **Request Parameters:** `id` (Int), `userId` (Int)
